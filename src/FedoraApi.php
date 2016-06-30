@@ -159,7 +159,7 @@ class FedoraApi implements IFedoraApi
 
         // Set query string.
         if (!empty($checksum)) {
-            $options['query'] = ['checksum' => $checksum];
+            $options['headers']['digest'] = ['checksum' => $checksum];
         }
 
         // Ensure uri takes transaction into account.
@@ -200,7 +200,7 @@ class FedoraApi implements IFedoraApi
 
         // Set query string.
         if (!empty($checksum)) {
-            $options['query'] = ['checksum' => $checksum];
+            $options['headers']['digest'] = ['checksum' => $checksum];
         }
 
         // Ensure uri takes transaction into account.
