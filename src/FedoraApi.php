@@ -28,6 +28,7 @@ use Symfony\Component\HttpFoundation\Response;
  * @category Islandora
  * @package  Islandora
  * @author   Daniel Lamb <daniel@discoverygarden.ca>
+ * @author   Nick Ruest <ruestn@gmail.com>
  * @license  http://www.gnu.org/licenses/gpl-3.0.en.html GPL
  * @link     http://www.islandora.ca
  */
@@ -134,11 +135,12 @@ class FedoraApi implements IFedoraApi
     /**
      * Creates a new resource in Fedora.
      *
-     * @param string    $uri            Resource URI
-     * @param string    $content        String or binary content
-     * @param array     $headers        HTTP Headers
-     * @param string    $transaction    Transaction id
-     * @param string    $checksum       SHA-1 checksum
+     * @param string    $uri                  Resource URI
+     * @param string    $content              String or binary content
+     * @param array     $headers              HTTP Headers
+     * @param string    $transaction          Transaction id
+     * @param string    $checksum_algorithm   Checksum algorithm
+     * @param string    $checksum_value       Checksum value
      *
      * @return ResponseInterface
      */
@@ -159,7 +161,7 @@ class FedoraApi implements IFedoraApi
 
         // Set query string.
         if (!empty($checksum)) {
-            $options['headers']['digest'] = ['checksum' => $checksum];
+            $options['headers']['digest'] = $checksum_algorithm.'='.$checksum_value;
         }
 
         // Ensure uri takes transaction into account.
@@ -175,11 +177,12 @@ class FedoraApi implements IFedoraApi
     /**
      * Saves a resource in Fedora.
      *
-     * @param string    $uri            Resource URI
-     * @param string    $content        String or binary content
-     * @param array     $headers        HTTP Headers
-     * @param string    $transaction    Transaction id
-     * @param string    $checksum       SHA-1 checksum
+     * @param string    $uri                  Resource URI
+     * @param string    $content              String or binary content
+     * @param array     $headers              HTTP Headers
+     * @param string    $transaction          Transaction id
+     * @param string    $checksum_algorithm   Checksum algorithm
+     * @param string    $checksum_value       Checksum value
      *
      * @return ResponseInterface
      */
@@ -200,7 +203,7 @@ class FedoraApi implements IFedoraApi
 
         // Set query string.
         if (!empty($checksum)) {
-            $options['headers']['digest'] = ['checksum' => $checksum];
+            $options['headers']['digest'] = $checksum_algorithm.'='.$checksum_value;
         }
 
         // Ensure uri takes transaction into account.
