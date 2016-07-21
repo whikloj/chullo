@@ -232,7 +232,6 @@ class Chullo implements IFedoraClient
     public function saveGraph(
         $uri,
         \EasyRdf_Graph $graph,
-        $checksum_algorithm = "",
         $transaction = ""
     ) {
         // Serialze the rdf.
