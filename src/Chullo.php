@@ -152,11 +152,12 @@ class Chullo implements IFedoraClient
     /**
      * Creates a new resource in Fedora.
      *
-     * @param string    $uri            Resource URI
-     * @param string    $content        String or binary content
-     * @param array     $headers        HTTP Headers
-     * @param string    $transaction    Transaction id
-     * @param string    $checksum       SHA-1 checksum
+     * @param string    $uri                  Resource URI
+     * @param string    $content              String or binary content
+     * @param array     $headers              HTTP Headers
+     * @param string    $transaction          Transaction id
+     * @param string    $checksum_algorithm   Checksum algorithm
+     * @param string    $checksum_value       Checksum value
      *
      * @return string   Uri of newly created resource or null if failed
      */
@@ -165,14 +166,16 @@ class Chullo implements IFedoraClient
         $content = null,
         $headers = [],
         $transaction = "",
-        $checksum = ""
+        $checksum_algorithm = "",
+        $checksum_value = ""
     ) {
         $response = $this->api->createResource(
             $uri,
             $content,
             $headers,
             $transaction,
-            $checksum
+            $checksum_algorithm,
+            $checksum_value
         );
 
         if ($response->getStatusCode() != 201) {
@@ -187,11 +190,12 @@ class Chullo implements IFedoraClient
     /**
      * Saves a resource in Fedora.
      *
-     * @param string    $uri            Resource URI
-     * @param string    $content        String or binary content
-     * @param array     $headers        HTTP Headers
-     * @param string    $transaction    Transaction id
-     * @param string    $checksum       SHA-1 checksum
+     * @param string    $uri                  Resource URI
+     * @param string    $content              String or binary content
+     * @param array     $headers              HTTP Headers
+     * @param string    $transaction          Transaction id
+     * @param string    $checksum_algorithm   Checksum algorithm
+     * @param string    $checksum_value       Checksum value
      *
      * @return boolean  True if successful
      */
@@ -200,14 +204,16 @@ class Chullo implements IFedoraClient
         $content = null,
         $headers = [],
         $transaction = "",
-        $checksum = ""
+        $checksum_algorithm = "",
+        $checksum_value = ""
     ) {
         $response = $this->api->saveResource(
             $uri,
             $content,
             $headers,
             $transaction,
-            $checksum
+            $checksum_algorithm,
+            $checksum_value
         );
 
         return $response->getStatusCode() == 204;
@@ -225,21 +231,25 @@ class Chullo implements IFedoraClient
     public function saveGraph(
         $uri,
         \EasyRdf_Graph $graph,
+        $checksum_algorithm = "",
         $transaction = ""
     ) {
         // Serialze the rdf.
         $turtle = $graph->serialise('turtle');
 
         // Checksum it.
-        $checksum = sha1($turtle);
+        // Do we need a function/method to replace `sha1`? We have to be able to execute the $checksum_algorithm string.
+        $checksum_value = sha1($turtle);
 
         // Save it.
         return $this->saveResource(
             $uri,
             $turtle,
             ['Content-Type' => 'text/turtle'],
+            //Shouldn't it be this? Or am I over thinking it?
+            //['digest' => $checksum_algorithm.'='.$checksum_value],
             $transaction,
-            $checksum
+            $checksum_value
         );
     }
 

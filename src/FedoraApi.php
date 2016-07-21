@@ -149,7 +149,8 @@ class FedoraApi implements IFedoraApi
         $content = null,
         $headers = [],
         $transaction = "",
-        $checksum = ""
+        $checksum_algorithm = "",
+        $checksum_value = ""
     ) {
         $options = ['http_errors' => false];
 
@@ -160,7 +161,7 @@ class FedoraApi implements IFedoraApi
         $options['headers'] = $headers;
 
         // Set query string.
-        if (!empty($checksum)) {
+        if (!empty($checksum_value)) {
             $options['headers']['digest'] = $checksum_algorithm.'='.$checksum_value;
         }
 
@@ -191,7 +192,8 @@ class FedoraApi implements IFedoraApi
         $content = null,
         $headers = [],
         $transaction = "",
-        $checksum = ""
+        $checksum_algorithm = "",
+        $checksum_value
     ) {
         $options = ['http_errors' => false];
 
@@ -202,7 +204,7 @@ class FedoraApi implements IFedoraApi
         $options['headers'] = $headers;
 
         // Set query string.
-        if (!empty($checksum)) {
+        if (!empty($checksum_value)) {
             $options['headers']['digest'] = $checksum_algorithm.'='.$checksum_value;
         }
 

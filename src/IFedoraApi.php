@@ -70,35 +70,39 @@ interface IFedoraApi
     /**
      * Creates a new resource in Fedora.
      *
-     * @param string    $uri            Resource URI
-     * @param string    $content        String or binary content
-     * @param array     $headers        HTTP Headers
-     * @param string    $transaction    Transaction id
-     * @param string    $checksum       SHA-1 checksum
+     * @param string    $uri                  Resource URI
+     * @param string    $content              String or binary content
+     * @param array     $headers              HTTP Headers
+     * @param string    $transaction          Transaction id
+     * @param string    $checksum_algorithm   Checksum algorithm
+     * @param string    $checksum_value       Checksum value
      */
     public function createResource(
         $uri = "",
         $content = null,
         $headers = [],
         $transaction = "",
-        $checksum = ""
+        $checksum_algorithm = "",
+        $checksum_value = ""
     );
 
     /**
      * Saves a resource in Fedora.
      *
-     * @param string    $uri            Resource URI
-     * @param string    $content        String or binary content
-     * @param array     $headers        HTTP Headers
-     * @param string    $transaction    Transaction id
-     * @param string    $checksum       SHA-1 checksum
+     * @param string    $uri                  Resource URI
+     * @param string    $content              String or binary content
+     * @param array     $headers              HTTP Headers
+     * @param string    $transaction          Transaction id
+     * @param string    $checksum_algorithm   Checksum algorithm
+     * @param string    $checksum_value       Checksum value
      */
     public function saveResource(
         $uri,
         $content = null,
         $headers = [],
         $transaction = "",
-        $checksum = ""
+        $checksum_algorithm = "",
+        $checksum_value
     );
 
     /**
