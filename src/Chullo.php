@@ -166,8 +166,8 @@ class Chullo implements IFedoraClient
         $content = null,
         $headers = [],
         $transaction = "",
-        $checksum_algorithm = "",
-        $checksum_value = ""
+        $checksum_value = "",
+        $checksum_algorithm = "sha1"
     ) {
         $response = $this->api->createResource(
             $uri,
@@ -238,7 +238,6 @@ class Chullo implements IFedoraClient
         $turtle = $graph->serialise('turtle');
 
         // Checksum it.
-        // Do we need a function/method to replace `sha1`? We have to be able to execute the $checksum_algorithm string.
         $checksum_value = sha1($turtle);
 
         // Save it.
@@ -246,10 +245,9 @@ class Chullo implements IFedoraClient
             $uri,
             $turtle,
             ['Content-Type' => 'text/turtle'],
-            //Shouldn't it be this? Or am I over thinking it?
-            //['digest' => $checksum_algorithm.'='.$checksum_value],
             $transaction,
-            $checksum_value
+            $checksum_value,
+            $checksum_algorithm
         );
     }
 
