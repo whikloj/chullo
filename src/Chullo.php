@@ -247,8 +247,7 @@ class Chullo implements IFedoraClient
             $turtle,
             ['Content-Type' => 'text/turtle'],
             $transaction,
-            $checksum_value,
-            $checksum_algorithm
+            $checksum_value
         );
     }
 
