@@ -84,7 +84,6 @@ interface IFedoraApi
         $transaction = "",
         $checksum_value = "",
         $checksum_algorithm = "sha1"
-
     );
 
     /**
@@ -102,7 +101,7 @@ interface IFedoraApi
         $content = null,
         $headers = [],
         $transaction = "",
-        $checksum_value,
+        $checksum_value = "",
         $checksum_algorithm = "sha1"
     );
 
