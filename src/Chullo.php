@@ -12,6 +12,7 @@
  * @package  Islandora
  * @author   Daniel Lamb <daniel@discoverygarden.ca>
  * @author   Nick Ruest <ruestn@gmail.com>
+ * @author   Diego Pino <dpino@metro.org>
  * @license  http://www.gnu.org/licenses/gpl-3.0.en.html GPL
  * @link     http://www.islandora.ca
  */
@@ -301,7 +302,7 @@ class Chullo implements IFedoraClient
      * Issues a COPY request to Fedora.
      *
      * @param string    $uri            Resource URI
-     * @param array     $destination    Destination URI
+     * @param string    $destination    Destination URI
      * @param string    $transaction    Transaction id
      *
      * @return string   Uri of newly created copy or null if failed
@@ -330,7 +331,7 @@ class Chullo implements IFedoraClient
      * Issues a MOVE request to Fedora.
      *
      * @param string    $uri            Resource URI
-     * @param array     $destination    Destination URI
+     * @param string    $destination    Destination URI
      * @param string    $transaction    Transaction id
      *
      * @return string   Uri of moved resource or null if failed
@@ -358,7 +359,7 @@ class Chullo implements IFedoraClient
     /**
      * Creates a new transaction.
      *
-     * @return string   Transaction id or null if failure
+     * @return null|string   Transaction id or null if failure
      */
     public function createTransaction()
     {

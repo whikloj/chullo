@@ -12,6 +12,8 @@
  * @package  Islandora
  * @author   Daniel Lamb <daniel@discoverygarden.ca>
  * @author   Nick Ruest <ruestn@gmail.com>
+ * @author   Jared Whiklo <Jared.Whiklo@umanitoba.ca>
+ * @author   Diego Pino <dpino@metro.org>
  * @license  http://www.gnu.org/licenses/gpl-3.0.en.html GPL
  * @link     http://www.islandora.ca
  */
@@ -29,6 +31,8 @@ use Symfony\Component\HttpFoundation\Response;
  * @package  Islandora
  * @author   Daniel Lamb <daniel@discoverygarden.ca>
  * @author   Nick Ruest <ruestn@gmail.com>
+ * @author   Jared Whiklo <Jared.Whiklo@umanitoba.ca>
+ * @author   Diego Pino <dpino@metro.org>
  * @license  http://www.gnu.org/licenses/gpl-3.0.en.html GPL
  * @link     http://www.islandora.ca
  */
@@ -313,7 +317,7 @@ class FedoraApi implements IFedoraApi
      * Issues a COPY request to Fedora.
      *
      * @param string    $uri            Resource URI
-     * @param array     $destination    Destination URI
+     * @param string    $destination    Destination URI
      * @param string    $transaction    Transaction id
      *
      * @return ResponseInterface
@@ -346,7 +350,7 @@ class FedoraApi implements IFedoraApi
      * Issues a MOVE request to Fedora.
      *
      * @param string    $uri            Resource URI
-     * @param array     $destination    Destination URI
+     * @param string    $destination    Destination URI
      * @param string    $transaction    Transaction id
      *
      * @return ResponseInterface
