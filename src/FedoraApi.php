@@ -149,8 +149,8 @@ class FedoraApi implements IFedoraApi
         $content = null,
         $headers = [],
         $transaction = "",
-        $checksum_algorithm = "",
-        $checksum_value = ""
+        $checksum_value = "",
+        $checksum_algorithm = "sha1"
     ) {
         $options = ['http_errors' => false];
 
@@ -192,8 +192,8 @@ class FedoraApi implements IFedoraApi
         $content = null,
         $headers = [],
         $transaction = "",
-        $checksum_algorithm = "",
-        $checksum_value
+        $checksum_value,
+        $checksum_algorithm = "sha1"
     ) {
         $options = ['http_errors' => false];
 

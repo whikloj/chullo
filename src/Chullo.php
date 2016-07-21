@@ -174,8 +174,8 @@ class Chullo implements IFedoraClient
             $content,
             $headers,
             $transaction,
-            $checksum_algorithm,
-            $checksum_value
+            $checksum_value,
+            $checksum_algorithm
         );
 
         if ($response->getStatusCode() != 201) {
@@ -204,16 +204,16 @@ class Chullo implements IFedoraClient
         $content = null,
         $headers = [],
         $transaction = "",
-        $checksum_algorithm = "",
-        $checksum_value = ""
+        $checksum_value = "",
+        $checksum_algorithm = "sha1"
     ) {
         $response = $this->api->saveResource(
             $uri,
             $content,
             $headers,
             $transaction,
-            $checksum_algorithm,
-            $checksum_value
+            $checksum_value,
+            $checksum_algorithm
         );
 
         return $response->getStatusCode() == 204;
