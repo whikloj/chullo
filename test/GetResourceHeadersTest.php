@@ -6,14 +6,12 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use Islandora\Chullo\Chullo;
 use Islandora\Chullo\FedoraApi;
 
 class GetResourceHeadersTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers  Islandora\Chullo\Chullo::getResourceHeaders
      * @covers  Islandora\Chullo\FedoraApi::getResourceHeaders
      * @uses    GuzzleHttp\Client
      */
@@ -32,9 +30,8 @@ class GetResourceHeadersTest extends \PHPUnit_Framework_TestCase
         $handler = HandlerStack::create($mock);
         $guzzle = new Client(['handler' => $handler]);
         $api = new FedoraApi($guzzle);
-        $client = new Chullo($api);
 
-        $result = $client->getResourceHeaders("");
+        $result = $api->getResourceHeaders("");
         $this->assertSame((array)$result, [['Status: 200 OK'], ['ETag: "bbdd92e395800153a686773f773bcad80a51f47b"'],
           ['Last-Modified: Wed, 28 May 2014 18:31:36 GMT'], ['Last-Modified: Thu, 20 Nov 2014 15:44:32 GMT'],
           ['Link: <http://www.w3.org/ns/ldp#Resource>;rel="type"'],
@@ -46,9 +43,8 @@ class GetResourceHeadersTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @covers            Islandora\Chullo\Chullo::getResourceHeaders
      * @covers  Islandora\Chullo\FedoraApi::getResourceHeaders
-     * @uses              GuzzleHttp\Client
+     * @uses    GuzzleHttp\Client
      */
     public function testReturnsNullOtherwise()
     {
@@ -59,9 +55,8 @@ class GetResourceHeadersTest extends \PHPUnit_Framework_TestCase
         $handler = HandlerStack::create($mock);
         $guzzle = new Client(['handler' => $handler]);
         $api = new FedoraApi($guzzle);
-        $client = new Chullo($api);
 
-        $result = $client->getResourceHeaders("");
+        $result = $api->getResourceHeaders("");
         $this->assertNull($result);
     }
 }

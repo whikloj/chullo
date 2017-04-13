@@ -6,14 +6,12 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use Islandora\Chullo\Chullo;
 use Islandora\Chullo\FedoraApi;
 
 class CreateResourceTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
-     * @covers  Islandora\Chullo\Chullo::createResource
      * @covers  Islandora\Chullo\FedoraApi::createResource
      * @uses    GuzzleHttp\Client
      */
@@ -26,14 +24,12 @@ class CreateResourceTest extends \PHPUnit_Framework_TestCase
         $handler = HandlerStack::create($mock);
         $guzzle = new Client(['handler' => $handler]);
         $api = new FedoraApi($guzzle);
-        $client = new Chullo($api);
 
-        $result = $client->createResource("");
+        $result = $api->createResource("");
         $this->assertSame($result, "SOME URI");
     }
 
     /**
-     * @covers  Islandora\Chullo\Chullo::createResource
      * @covers  Islandora\Chullo\FedoraApi::createResource
      * @uses    GuzzleHttp\Client
      */
@@ -47,14 +43,13 @@ class CreateResourceTest extends \PHPUnit_Framework_TestCase
         $handler = HandlerStack::create($mock);
         $guzzle = new Client(['handler' => $handler]);
         $api = new FedoraApi($guzzle);
-        $client = new Chullo($api);
 
         // 404
-        $result = $client->createResource("");
+        $result = $api->createResource("");
         $this->assertNull($result);
 
         // 409
-        $result = $client->createResource("");
+        $result = $api->createResource("");
         $this->assertNull($result);
     }
 }
